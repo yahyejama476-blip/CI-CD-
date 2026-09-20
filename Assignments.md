@@ -2,7 +2,9 @@
 Find task 2 below task 1
 
 ## What I Built
-I created an automated CI/CD pipeline using GitHub Actions. The pipeline triggers automatically on every push and pull request to the main branch. It runs three types of checks: linting to verify code formatting, a simulated unit test stage, and a Docker build check to confirm the container builds without errors. Everything is defined in YAML and runs entirely within GitHub — no manual steps required.
+Task 1 — Built a CI pipeline that triggers on every push and pull request, runs code checks,  verifies formatting, tests the setup and confirms everything is ready
+
+Task 2 — Built a CD workflow that runs automatically after code passes, builds the Docker image, verifies the application compiles, prepares it for deployment all without manual steps
 
 ## Pipeline YAML — Task 1
 ```yaml
