@@ -1,0 +1,28 @@
+name: CD Deploy Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: my-app:latest
+
+      - name: Verify built image
+        run: docker images | grep my-app
+
+      - name: Deployment complete
+        run: echo "Application built and ready"
