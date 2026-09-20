@@ -1,0 +1,43 @@
+name: CI Pipeline
+
+# TRIGGERS — runs on push AND on pull requests ✅
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Run CI Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1 — Get your code ✅
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2 — Linting ✅
+      - name: Lint Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+      - run: terraform fmt -check
+        name: Check Terraform formatting
+
+      # Step 3 — Unit tests ✅
+      - name: Run tests
+        run: |
+          echo "Running unit tests..."
+          # Replace with your actual test command
+          # e.g. npm test, python -m pytest, go test ./...
+
+      # Step 4 — Docker build check ✅
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: test-app:latest
+
+          
